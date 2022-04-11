@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
-#include <cmath>
+#include <vector>   //not used afaik
+#include <cmath>    //used for pow
 using namespace std;
 
 double x(double t){
