@@ -12,7 +12,7 @@ struct vec2d{        //defining 2d vectors, and creating their "rules"
     }
     float norm()
     {
-        return sqrt(x*x+y*y);
+        return std::sqrt(x*x+y*y);
     }
     vec2d unit()
     {
