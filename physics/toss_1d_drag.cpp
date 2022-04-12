@@ -20,7 +20,6 @@ float acceleration(float v){
     float drag_acceleration = drag(v)/m;
     float total_acceleration = drag_acceleration+g;
     return total_acceleration;
-
 }
 
 int main(){
