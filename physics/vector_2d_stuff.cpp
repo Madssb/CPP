@@ -17,6 +17,7 @@ struct vec2d        //defining 2d vectors, and creating their "rules"
         vec2d v(x,y);
         return v/v.norm();
     }
+    
     friend vec2d operator+(vec2d const &, vec2d const &);   //lets the + operator interact with vec2d. + is basically declared a friend and is let into vec2d's house.
     friend vec2d operator-(vec2d const &, vec2d const &);   //lets - into struct house
     friend vec2d operator*(vec2d const &, vec2d const &);   // lets * into struct house
@@ -27,7 +28,7 @@ struct vec2d        //defining 2d vectors, and creating their "rules"
     friend vec2d operator/(vec2d const &, float const &); //allows for dividing a vector by a constant 
     friend vec2d operator/(float const &, vec2d const &); //allows for dividing a constant by a vector (idk if i need this???)
     friend ostream &operator<<(ostream &, const vec2d &); //allows for 
-
+    
 };
 
 vec2d operator+(vec2d const &c1, vec2d const &c2)           // rules for addition of vectors
