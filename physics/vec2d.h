@@ -1,6 +1,3 @@
-#include <iostream>
-#include <cmath>
-
 struct vec2d        //defining 2d vectors, and creating their "rules"
 {
     float x, y;     //defines vec2d as a datatype
@@ -26,7 +23,7 @@ struct vec2d        //defining 2d vectors, and creating their "rules"
     friend vec2d operator*(float const &, vec2d const &);   
     friend vec2d operator/(vec2d const &, float const &); //allows for dividing a vector by a constant 
     friend vec2d operator/(float const &, vec2d const &); //allows for dividing a constant by a vector (idk if i need this???)
-    friend std::ostream &operator<<(std::ostream &, const vec2d &); //allows for 
+    friend ostream &operator<<(ostream &, const vec2d &); //allows for 
     
 };
 
@@ -62,23 +59,8 @@ vec2d operator/(vec2d const &c1, float const &c2)           //rules for scaling 
 {
     return vec2d(c1.x /c2, c1.y/c2);
 }
-std::ostream &operator<<(std::ostream &os, const vec2d &c2)
+ostream &operator<<(ostream &os, const vec2d &c2)
 {
     os << "[" << c2.x << "," << c2.y <<"]";
     return os;
-}
-
-
-
-int main(){
-    vec2d a = {1 ,2};
-    vec2d b = {3, 4};
-    float c = 3;
-    std::cout <<"a="<<a<<std::endl;
-    std::cout <<"c="<<c<<std::endl;
-    std::cout <<"a*c="<<a*c<<std::endl;
-    std::cout <<"a*a="<<a*a<<std::endl;
-    std::cout <<"a.norm()="<<a.norm()<<std::endl;
-    std::cout <<"a.unit()="<<a.unit()<<std::endl;
-    return 0;
 }
