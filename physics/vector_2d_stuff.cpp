@@ -20,34 +20,45 @@ struct vec2d        //defining 2d vectors, and creating their "rules"
     friend vec2d operator+(vec2d const &, vec2d const &);   //lets the + operator interact with vec2d. + is basically declared a friend and is let into vec2d's house.
     friend vec2d operator-(vec2d const &, vec2d const &);   //lets - into struct house
     friend vec2d operator*(vec2d const &, vec2d const &);   // lets * into struct house
-    friend vec2d operator*(vec2d const &, float const &);
     friend vec2d operator/(vec2d const &, vec2d const &);
-    friend vec2d operator/(vec2d const &, float const &);
-    friend ostream &operator<<(ostream &, const vec2d &);
+
+    friend vec2d operator*(vec2d const &, float const &); //allows for multiplying a vector with a constant. requires 2 lines to be commutative
+    friend vec2d operator*(float const &, vec2d const &);   
+    friend vec2d operator/(vec2d const &, float const &); //allows for dividing a vector by a constant 
+    friend vec2d operator/(float const &, vec2d const &); //allows for dividing a constant by a vector (idk if i need this???)
+    friend ostream &operator<<(ostream &, const vec2d &); //allows for 
 
 };
 
-vec2d operator+(vec2d const &c1, vec2d const &c2)           //house rules are established for +, and how + will behave inside vec2d's house
+vec2d operator+(vec2d const &c1, vec2d const &c2)           // rules for addition of vectors
 {
     return vec2d(c1.x + c2.x, c1.y + c2.y);
 }
-vec2d operator-(vec2d const &c1, vec2d const &c2)
+vec2d operator-(vec2d const &c1, vec2d const &c2)           //rules for subtracting vectors
 {
     return vec2d(c1.x - c2.x, c1.y - c2.y);
 }
-vec2d operator*(vec2d const &c1, vec2d const &c2)
+vec2d operator*(vec2d const &c1, vec2d const &c2)           //rules for multiplying vectors (array behaviour)
 {
     return vec2d(c1.x * c2.x, c1.y * c2.y);
 }
-vec2d operator*(vec2d const &c1, float const &c2)
-{
-    return vec2d(c1.x * c2, c1.y * c2);
-}
-vec2d operator/(vec2d const &c1, vec2d const &c2)
+
+vec2d operator/(vec2d const &c1, vec2d const &c2)           //rules for dividing vectors (array behaviour)
 {
     return vec2d(c1.x / c2.x, c1.y / c2.y);
 }
-vec2d operator/(vec2d const &c1, float const &c2)
+
+vec2d operator*(vec2d const &c1, float const &c2)           //rules for scaling vectors by multiplication
+{
+    return vec2d(c1.x * c2, c1.y * c2);
+}
+
+vec2d operator*(float const &c1, vec2d const &c2)           //rules for scaling vectors by multiplication, commutative property.
+{
+    return vec2d(c1 * c2.x, c1 * c2.y);
+}
+
+vec2d operator/(vec2d const &c1, float const &c2)           //rules for scaling vectors by dividing
 {
     return vec2d(c1.x /c2, c1.y/c2);
 }
