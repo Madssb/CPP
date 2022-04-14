@@ -2,6 +2,7 @@
 #include <cmath>     //std::pow lives here
 #include <vector>    //std::vector lives here
 #include "vec2d.h"   //vec2d lives here
+#include <fstream>   //
 
 //this is witchcraft from stackoverflow, it makes it so i can use std::cout for vectors.
 template < class T >
@@ -47,14 +48,10 @@ int main()
     vec2d r {}; 
     // Initial velociy of the ball
     vec2d v {};
-    std::cout <<"insert rx0: ";
-    std::cin >> r.x;
-    std::cout<< "insert ry0: ";
-    std::cin >> r.y;
-    std::cout<< "insert vx0: ";
-    std::cin >> v.x;
-    std::cout<< "insert vy0: ";
-    std::cin >> v.y;
+    std::cout <<"insert r0: ";
+    std::cin >> r;
+    std::cout<< "insert v0: ";
+    std::cin >> v;
     // Amount of steps in simulating the toss
     int step_amount {100};
     // Index which will increment within simulation
@@ -67,6 +64,8 @@ int main()
     std::vector<vec2d> r_vector {r};
     // Stores velocity vectors sequentially
     std::vector<vec2d> v_vector {v};  
+    std::ofstream myfile;
+    myfile.open ("position.txt");
     while(step_amount>step and r.y>0)
     {         
         //Euler-Cromer integration loop
@@ -75,10 +74,12 @@ int main()
         //keeping information for displaying plots
         r_vector.push_back(r);
         v_vector.push_back(v);
+        myfile << r.x <<" " << r.y <<"\n";
         step++;
     }
-    std::cout << "r_final:\t" << r << std::endl << "v_final:\t" << v << std::endl;
-    std::cout << "step " << step << "/" << step_amount << std::endl;
-    //std::cout << "r_vector: " << r_vector << std::endl;
+    std::cout << "r_final:\t" << r << "\n" << "v_final:\t" << v << "\n";
+    std::cout << "step " << step << "/" << step_amount << "\n";
+    std::cout << "r_vector: " << r_vector << "\n";
+    myfile.close();
     return 0; 
 }

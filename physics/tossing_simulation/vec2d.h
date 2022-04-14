@@ -14,39 +14,50 @@ struct vec2d{        //defining 2d vectors, and creating their "rules". no invar
         vec2d v{x,y};
         return v/v.norm();
     }
-    
-    friend vec2d operator+(vec2d const &c1, vec2d const &c2)           // rules for addition of vectors (vector calculus + array behaviour)
+    // rules for addition of vectors (vector calculus + numpy-array behaviour)
+    friend vec2d operator+(vec2d const &c1, vec2d const &c2)
     {
         return {c1.x + c2.x, c1.y + c2.y};
     }
-    friend vec2d operator-(vec2d const &c1, vec2d const &c2)           //rules for subtracting vectors (vector calculus + array behaviour)
+    //rules for subtracting vectors (vector calculus + array behaviour)
+    friend vec2d operator-(vec2d const &c1, vec2d const &c2)           
     {
         return {c1.x - c2.x, c1.y - c2.y};
     }
-    friend vec2d operator*(vec2d const &c1, vec2d const &c2)           //rules for multiplying vectors (array behaviour)
+    //rules for multiplying vectors (array behaviour)
+    friend vec2d operator*(vec2d const &c1, vec2d const &c2)           
     {
         return {c1.x * c2.x, c1.y * c2.y};
     }
-    friend vec2d operator/(vec2d const &c1, vec2d const &c2)           //rules for dividing vectors (array behaviour)
+    //rules for dividing vectors (array behaviour)
+    friend vec2d operator/(vec2d const &c1, vec2d const &c2)           
     {   
         return {c1.x / c2.x, c1.y / c2.y};
     }
-    friend vec2d operator*(vec2d const &c1, float const &c2)           //rules for scaling vectors by multiplication
+    //rules for scaling vectors by multiplication
+    friend vec2d operator*(vec2d const &c1, float const &c2)           
     {
         return {c1.x * c2, c1.y * c2};
     }
-    friend vec2d operator*(float const &c1, vec2d const &c2)           //rules for scaling vectors by multiplication, commutative property.
+    //rules for scaling vectors by multiplication
+    friend vec2d operator*(float const &c1, vec2d const &c2)           
     {
         return {c1 * c2.x, c1 * c2.y};
     }
-    friend vec2d operator/(vec2d const &c1, float const &c2)           //rules for scaling vectors by dividing
+    //same as above, but making it commutative.
+    friend vec2d operator/(vec2d const &c1, float const &c2)           
     {
         return {c1.x /c2, c1.y/c2};
     }
-    friend std::ostream &operator<<(std::ostream &os, const vec2d &c2)
+    //rules for scaling vectors by division.
+    friend std::ostream &operator<<(std::ostream &os, const vec2d &c2) 
     {
-        os << "[" << c2.x << "," << c2.y <<"]";
-        return os;
+        return os << "[" << c2.x << "," << c2.y <<"]";
+    }
+    
+    friend std::istream &operator>>(std::istream &is, vec2d &c2)
+    {
+        return is >> c2.x >> c2.y;
     }
 };
 #endif //VEC2D_H
