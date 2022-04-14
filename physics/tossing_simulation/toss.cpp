@@ -1,7 +1,7 @@
 #include <iostream>  //std::cout lives here
 #include <cmath>     //std::pow lives here
 #include <vector>    //std::vector lives here
-#include "vec2d.h"    //vec2d lives here
+#include "vec2d.h"   //vec2d lives here
 
 //this is witchcraft from stackoverflow, it makes it so i can use std::cout for vectors.
 template < class T >
@@ -44,9 +44,17 @@ vec2d acceleration(vec2d v) //calculates the total acceleration acting on the ob
 int main()
 {
     // Initial position of the ball
-    vec2d r {5, 10}; 
+    vec2d r {}; 
     // Initial velociy of the ball
-    vec2d v {10, 7};
+    vec2d v {};
+    std::cout <<"insert rx0: ";
+    std::cin >> r.x;
+    std::cout<< "insert ry0: ";
+    std::cin >> r.y;
+    std::cout<< "insert vx0: ";
+    std::cin >> v.x;
+    std::cout<< "insert vy0: ";
+    std::cin >> v.y;
     // Amount of steps in simulating the toss
     int step_amount {100};
     // Index which will increment within simulation
@@ -59,7 +67,7 @@ int main()
     std::vector<vec2d> r_vector {r};
     // Stores velocity vectors sequentially
     std::vector<vec2d> v_vector {v};  
-    while(step_amount>step)
+    while(step_amount>step and r.y>0)
     {         
         //Euler-Cromer integration loop
         v = v + acceleration(v)*dt;
@@ -70,6 +78,7 @@ int main()
         step++;
     }
     std::cout << "r_final:\t" << r << std::endl << "v_final:\t" << v << std::endl;
+    std::cout << "step " << step << "/" << step_amount << std::endl;
     //std::cout << "r_vector: " << r_vector << std::endl;
     return 0; 
 }
