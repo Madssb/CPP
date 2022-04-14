@@ -4,14 +4,12 @@
 #include "vec2d.h"   //vec2d lives here
 #include <fstream>   //
 
-//this is witchcraft from stackoverflow, it makes it so i can use std::cout for vectors.
 template < class T >
 std::ostream& operator << (std::ostream& os, const std::vector<T>& v) 
 {
     os << "[";
-    for (typename std::vector<T>::const_iterator ii = v.begin(); ii != v.end(); ++ii)
-    {
-        os << " " << *ii;
+    for(auto i : v){
+        os << " " << i;
     }
     os << "]";
     return os;
@@ -52,20 +50,26 @@ int main()
     std::cin >> r;
     std::cout<< "insert v0: ";
     std::cin >> v;
+
     // Amount of steps in simulating the toss
-    int step_amount {100};
-    // Index which will increment within simulation
-    int step {0};
+    int step_amount {};
+    std::cout << "insert step amount";
+    std::cin >> step_amount;
+
     // Duration of simulation [s]
-    float duration {2};
+    float duration {};
+    std::cout << "insert simulation length:";
+    std::cin >> duration;
     // Timestep for simulation [s]
     float dt {duration/step_amount};
+    // Index which will increment within simulation
+    int step {0};
     // Stores position vectors sequentially
     std::vector<vec2d> r_vector {r};
     // Stores velocity vectors sequentially
     std::vector<vec2d> v_vector {v};  
     std::ofstream myfile;
-    myfile.open ("position.txt");
+    myfile.open ("data.txt");
     while(step_amount>step and r.y>0)
     {         
         //Euler-Cromer integration loop
@@ -74,12 +78,9 @@ int main()
         //keeping information for displaying plots
         r_vector.push_back(r);
         v_vector.push_back(v);
-        myfile << r.x <<" " << r.y <<"\n";
+        myfile << r.x << " " << r.y << " " << v.x << " " << v.y << "\n";
         step++;
     }
-    std::cout << "r_final:\t" << r << "\n" << "v_final:\t" << v << "\n";
-    std::cout << "step " << step << "/" << step_amount << "\n";
-    std::cout << "r_vector: " << r_vector << "\n";
     myfile.close();
     return 0; 
 }
