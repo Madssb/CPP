@@ -1,6 +1,5 @@
-import numpy as np
-import matplotlib.pyplot as plt
-
+import numpy as np  #for storing data that will be plotted
+import matplotlib.pyplot as plt #for plotting
 
 
 num_datapoints = sum(1 for line in open('data.txt'))
