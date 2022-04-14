@@ -1,9 +1,9 @@
-#include <iostream>
-#include <cmath>
-#include <vector> //will be used for vector stuff lol
-#include "vec2d.h" //defines the vec2d datatype, which is 2d mathematical vectors. 
+#include <iostream>  //std::cout lives here
+#include <cmath>     //std::pow lives here
+#include <vector>    //std::vector lives here
+#include "vec2d.h"    //vec2d lives here
 
-
+//this is witchcraft from stackoverflow, it makes it so i can use std::cout for vectors.
 template < class T >
 std::ostream& operator << (std::ostream& os, const std::vector<T>& v) 
 {
@@ -16,38 +16,60 @@ std::ostream& operator << (std::ostream& os, const std::vector<T>& v)
     return os;
 }
 
-
-vec2d drag(vec2d v){
-    float rho =1.2;     //density of air at sea level
-    float A  = 0.1*0.1*M_PI;//cross section of ball with radius r=0.1m
-    float Cd = 0.47;    //Drag coefficient for a sphere
-    return -0.5*rho*Cd*A*pow(v.norm(),2)*v.unit();  //drag force acting on object [N]
+vec2d drag(vec2d v) //calculates the drag force acting on the physical object.
+{
+    // Density of air at sea level [kg/m^3]
+    float density {1.2};
+    // Cross-section of ball with radius r=0.1m [m^2]
+    float area {0.1 * 0.1 * M_PI}; 
+    // Drag coefficient for a sphere
+    float drag_coefficient {0.47};
+    // Formula for drag-force [N]
+    return -0.5 * density * drag_coefficient * area * std::pow(v.norm(),2) * v.unit();  
 }
-vec2d acceleration(vec2d v){
-    vec2d g = {-9.81, 0};   //constant acceleration g acting on object, [m/s**2]
-    float m = 0.1;          //kg, mass of object                        [kg]
-    vec2d drag_acceleration = drag(v)/m;
-    vec2d total_acceleration = drag_acceleration + g;
+
+vec2d acceleration(vec2d v)
+{
+    // Gravitational field, [m/s^2]
+    vec2d gravity {0, -9.81};
+    // Mass of ball [kg]
+    float mass {0.1};
+    // Applying N2L to find the acceleration acting on the ball caused by the drag force.
+    vec2d drag_acceleration = drag(v)/mass;
+    // Finding the total acceleration acting on the ball by adding the accelerations.
+    vec2d total_acceleration = drag_acceleration + gravity;
     return total_acceleration;
 }
-int main(){
-//initial conditions
-    vec2d r = {5, 0}; //intial position r0 of object.       [m]
-    vec2d v = {10, 7}; //initial velocity v0s of object.    [m/s]
-    std::vector<vec2d> r_vector = {r};
-    std::vector<vec2d> v_vector = {v};
-    int N = 100;       //amount of steps for simulation
-    int n = 0;          //index which will increment    
-    float T = 2;        //s, duration of simulation
-    float dt = T/N;     //timestep for simulation
-    while(N>n){         //Euler-Cromer integration loop
+
+int main()
+{
+    // Initial position of the ball
+    vec2d r {5, 10}; 
+    // Initial velociy of the ball
+    vec2d v {10, 7};
+    // Amount of steps in simulating the toss
+    int step_amount {100};
+    // Index which will increment within simulation
+    int step {0};
+    // Duration of simulation [s]
+    float duration {2};
+    // Timestep for simulation [s]
+    float dt {duration/step_amount};
+    // Stores position vectors sequentially
+    std::vector<vec2d> r_vector {r};
+    // Stores velocity vectors sequentially
+    std::vector<vec2d> v_vector {v};  
+    while(step_amount>step)
+    {         
+        //Euler-Cromer integration loop
         v = v + acceleration(v)*dt;
         r = r + v*dt;
+        //keeping information for displaying plots
         r_vector.push_back(r);
         v_vector.push_back(v);
-        n++;
+        step++;
     }
     std::cout << "r_final:\t" << r << std::endl << "v_final:\t" << v << std::endl;
-    std::cout << "r_vector: " << r_vector << std::endl;
+    //std::cout << "r_vector: " << r_vector << std::endl;
     return 0; 
 }
