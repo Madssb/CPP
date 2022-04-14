@@ -28,7 +28,7 @@ vec2d drag(vec2d v) //calculates the drag force acting on the physical object.
     return -0.5 * density * drag_coefficient * area * std::pow(v.norm(),2) * v.unit();  
 }
 
-vec2d acceleration(vec2d v)
+vec2d acceleration(vec2d v) //calculates the total acceleration acting on the object
 {
     // Gravitational field, [m/s^2]
     vec2d gravity {0, -9.81};
