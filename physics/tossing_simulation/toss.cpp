@@ -7,7 +7,7 @@
 #include <iostream> //std::cout lives here
 #include <cmath>    //std::pow lives here
 #include "vec2d.h"  //vec2d lives here
-#include <fstream>  //
+#include <fstream>  //std::ofstream lives here
 
 vec2d drag(vec2d v) // calculates the drag force acting on the physical object.
 {
