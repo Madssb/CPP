@@ -39,22 +39,22 @@ struct vec2d{        //defining 2d vectors, and creating their "rules". no invar
     {
         return {c1.x * c2, c1.y * c2};
     }
-    //rules for scaling vectors by multiplication
+    //same as above, but making it commutative.
     friend vec2d operator*(float const &c1, vec2d const &c2)           
     {
         return {c1 * c2.x, c1 * c2.y};
     }
-    //same as above, but making it commutative.
+    //rules for scaling vectors by division.
     friend vec2d operator/(vec2d const &c1, float const &c2)           
     {
         return {c1.x /c2, c1.y/c2};
     }
-    //rules for scaling vectors by division.
+    //makes vec2d objects printable with std::cout
     friend std::ostream &operator<<(std::ostream &os, const vec2d &c2) 
     {
         return os << "[" << c2.x << "," << c2.y <<"]";
     }
-    
+    //makes vec2d able to be assigned values with std::cin
     friend std::istream &operator>>(std::istream &is, vec2d &c2)
     {
         return is >> c2.x >> c2.y;
