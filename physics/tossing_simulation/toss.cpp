@@ -66,7 +66,7 @@ int main()
         v = v + acceleration(v) * dt;
         r = r + v * dt;
         // information about position and velocity is stored in data.txt for usage in display.py, visualizing the data of the simulation
-        myfile << r.x << " " << r.y << " " << v.x << " " << v.y << "\n";
+        myfile << r.x << " " << r.y << " " << v.x << " " << v.y << std::endl;
         step++;
     }
     myfile.close();
