@@ -17,10 +17,10 @@ int main()
     // initial position and velocity for planet in solar system, where sun exists within the origin.
     vec2d r{3.61360399, 0.};
     //vec2d v{0., 5.45623455};
-    vec2d v{0., 2.45623455};
-    int step_amount{1000000};
+    vec2d v{0., 0.45623455};
+    int step_amount{10000000};
     // duration for simulation [yrs]
-    float duration{1000};
+    float duration{100};
     float dt{duration / step_amount};
     int step{0};
     std::ofstream myfile;

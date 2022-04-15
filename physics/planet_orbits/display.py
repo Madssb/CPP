@@ -17,4 +17,5 @@ with open('data.txt', 'r') as infile: # open file
 plt.plot(r[0,:],r[1,:])
 plt.xlabel('x [m]')
 plt.ylabel('y [m]')
-plt.show()
+#plt.show()
+plt.savefig('plot.png')
