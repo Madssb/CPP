@@ -1,3 +1,16 @@
+"""
+import numpy as np  #for storing data that will be plotted
+import matplotlib.pyplot as plt #for plotting
+
+
+data = np.loadtxt("data.txt")#  rx [:,0], rx [:,1], vx [:,2] vy [:,3]
+
+plt.plot(data[:,0],data[:,1])
+plt.xlabel('x [m]')
+plt.ylabel('y [m]')
+#plt.show()
+plt.savefig('plot.png')
+"""
 import numpy as np  #for storing data that will be plotted
 import matplotlib.pyplot as plt #for plotting
 
@@ -17,5 +30,4 @@ with open('data.txt', 'r') as infile: # open file
 plt.plot(r[0,:],r[1,:])
 plt.xlabel('x [m]')
 plt.ylabel('y [m]')
-#plt.show()
 plt.savefig('plot.png')

@@ -37,13 +37,13 @@ vec2d acceleration(vec2d v) // calculates the total acceleration acting on the o
 int main()
 {
     // Initial position of the ball
-    vec2d r{};
+    vec2d r{0,10};
     // Initial velociy of the ball
-    vec2d v{};
-    std::cout << "insert r0: ";
-    std::cin >> r;
-    std::cout << "insert v0: ";
-    std::cin >> v;
+    vec2d v{5,300};
+    //std::cout << "insert r0: ";
+    //std::cin >> r;
+    //std::cout << "insert v0: ";
+    //std::cin >> v;
 
     // Amount of steps in simulating the toss
     int step_amount{};
@@ -51,9 +51,9 @@ int main()
     std::cin >> step_amount;
 
     // Duration of simulation [s]
-    float duration{};
-    std::cout << "insert simulation length:";
-    std::cin >> duration;
+    float duration{2};
+    //std::cout << "insert simulation length:";
+    //std::cin >> duration;
     // Timestep for simulation [s]
     float dt{duration / step_amount};
     // Index which will increment within simulation
