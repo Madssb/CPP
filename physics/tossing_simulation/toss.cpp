@@ -12,11 +12,11 @@
 vec2d drag(vec2d v) // calculates the drag force acting on the physical object.
 {
     // Density of air at sea level [kg/m^3]
-    float density{1.2};
+    float const density{1.2};
     // Cross-section of ball with radius r=0.1m [m^2]
-    float area{0.1 * 0.1 * M_PI};
+    float const area{0.1 * 0.1 * M_PI};
     // Drag coefficient for a sphere
-    float drag_coefficient{0.47};
+    float const drag_coefficient{0.47};
     // Formula for drag-force [N]
     return -0.5 * density * drag_coefficient * area * std::pow(v.norm(), 2) * v.unit();
 }
@@ -24,9 +24,9 @@ vec2d drag(vec2d v) // calculates the drag force acting on the physical object.
 vec2d acceleration(vec2d v) // calculates the total acceleration acting on the object
 {
     // Gravitational field, [m/s^2]
-    vec2d gravity{0, -9.81};
+    vec2d const gravity{0, -9.81};
     // Mass of ball [kg]
-    float mass{0.1};
+    float const mass{0.1};
     // Applying N2L to find the acceleration acting on the ball caused by the drag force.
     vec2d drag_acceleration = drag(v) / mass;
     // Finding the total acceleration acting on the ball by adding the accelerations.
@@ -36,26 +36,30 @@ vec2d acceleration(vec2d v) // calculates the total acceleration acting on the o
 
 int main()
 {
-    // Initial position of the ball
-    vec2d r{0,10};
-    // Initial velociy of the ball
-    vec2d v{5,300};
-    //std::cout << "insert r0: ";
-    //std::cin >> r;
-    //std::cout << "insert v0: ";
-    //std::cin >> v;
-
+    // Initial position of the object
+    vec2d r{0, 10};
+    // Initial velociy of the object
+    vec2d v{5, 300};
+    /*
+    // Initial position of the object
+    vec2d r{};
+    // Initial velocity of the object
+    vec2d v{};
+    std::cout << "insert r0: ";
+    std::cin >> r;
+    std::cout << "insert v0: ";
+    std::cin >> v;
+    */
     // Amount of steps in simulating the toss
     int step_amount{};
     std::cout << "insert step amount";
     std::cin >> step_amount;
-
     // Duration of simulation [s]
     float duration{2};
-    //std::cout << "insert simulation length:";
-    //std::cin >> duration;
-    // Timestep for simulation [s]
-    float dt{duration / step_amount};
+    // std::cout << "insert simulation length:";
+    // std::cin >> duration;
+    //  Timestep for simulation [s]
+    float const dt{duration / step_amount};
     // Index which will increment within simulation
     int step{0};
     std::ofstream myfile;
