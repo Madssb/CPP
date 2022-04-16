@@ -6,9 +6,9 @@
 // Calculates the gravitational acceleration acted on a planet, by the sun, by applying N2L to the gravitational force.
 vec2d gravitational_acceleration(vec2d position)
 {
-    float star_mass{2.750553637204563};
+    float const star_mass{2.750553637204563};
     // Gravitational constant in solar system units [AU^3/yr^2/m_sun]
-    float Gravitational_constant{39.47841760435743};
+    float const Gravitational_constant{39.47841760435743};
     return -star_mass * Gravitational_constant * position.unit() / std::pow(position.norm(), 2);
 }
 
@@ -18,10 +18,11 @@ int main()
     vec2d r{3.61360399, 0.};
     //vec2d v{0., 5.45623455};
     vec2d v{0., 0.45623455};
-    int step_amount{10000000};
-    // duration for simulation [yrs]
-    float duration{100};
-    float dt{duration / step_amount};
+    int const step_amount{10000000};
+    // duration for simulation [yr]
+    float const duration{100};
+    //  Timestep for simulation [yr]
+    float const dt{duration / step_amount};
     int step{0};
     std::ofstream myfile;
     myfile.open("data.txt");
