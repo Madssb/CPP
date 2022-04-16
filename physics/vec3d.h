@@ -16,6 +16,14 @@ struct vec3d
         vec3d v{x, y, z};
         return v / v.norm();
     }
+    // defines the dot product for vectors
+    float dot(vec3d const &c1, vec3d const &c2){
+        return c1.x * c2.x + c1.y * c2.y + c1.z * c2.z}
+    // defines the cross product for vectors
+    vec3d cross(vec3d const &c1, vec3d const &c2)
+    {
+        return { c1.y *c2.z - c1.z *c2.x, c1.x *c2.z - c1.z *c2.x, c1.x *c2.y - c2.x *c1.y }
+    }
     // rules for addition of vectors (vector calculus + numpy-array behaviour)
     friend vec3d operator+(vec3d const &c1, vec3d const &c2)
     {
