@@ -8,7 +8,6 @@
 #include <cmath>    //std::pow lives here
 #include "vec2d.h"  //vec2d lives here
 #include <fstream>  //std::ofstream lives here
-#include <cstdint>
 
 vec2d drag(vec2d v) // calculates the drag force acting on the physical object.
 {
@@ -39,7 +38,7 @@ int main()
 {
     // Initial position of the object
     vec2d r{0, 10};
-    // Initial velociy of the object
+    // Initial velociy of the objectx
     vec2d v{5, 300};
     /*
     // Initial position of the object
@@ -62,7 +61,7 @@ int main()
     //  Timestep for simulation [s]
     float const dt{duration / step_amount};
     // Index which will increment within simulation
-    //uint32_t step{};
+    // uint32_t step{};
     int step{};
     std::ofstream myfile;
     myfile.open("data.txt");
